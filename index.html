@@ -37,6 +37,225 @@
       radial-gradient(ellipse at 80% 90%, rgba(0,229,255,0.06) 0%, transparent 50%);
   }
 
+  /* ── TOP BAR ── */
+  .top-bar {
+    width: 100%;
+    max-width: 760px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text);
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    padding: 7px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .lang-btn:hover { border-color: var(--accent); background: rgba(0,229,255,0.06); transform: translateY(-1px); }
+  .lang-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.1); }
+  .flag { font-size: 15px; }
+
+  /* ── CRAM TOOLS PANEL ── */
+  .cram-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text);
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    padding: 7px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .cram-toggle-btn:hover { border-color: #f59e0b; background: rgba(245,158,11,0.06); transform: translateY(-1px); }
+  .cram-toggle-btn.active { border-color: #f59e0b; color: #f59e0b; background: rgba(245,158,11,0.1); }
+
+  #cram-panel {
+    display: none;
+    width: 100%;
+    max-width: 760px;
+    background: var(--surface);
+    border: 1px solid #f59e0b44;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 18px;
+    animation: fadeUp 0.35s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+  #cram-panel::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, #f59e0b, #ef4444, #f59e0b);
+  }
+
+  .cram-panel-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #f59e0b;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cram-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .cram-opt-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 16px;
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .cram-opt-btn:hover { border-color: #f59e0b; color: var(--text); background: rgba(245,158,11,0.06); }
+  .cram-opt-btn.active { border-color: #f59e0b; color: #f59e0b; background: rgba(245,158,11,0.1); }
+  .cram-opt-btn .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; transition: background 0.2s; }
+
+  /* ── CHEAT SHEET ── */
+  #cheat-sheet {
+    display: none;
+    margin-top: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    animation: fadeUp 0.3s ease both;
+  }
+  .cheat-heading {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #f59e0b;
+    margin-bottom: 12px;
+  }
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  .cheat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .cheat-card .key {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .cheat-card .val {
+    font-size: 0.8rem;
+    color: #c4c9d4;
+    line-height: 1.5;
+  }
+
+  /* ── FLASHCARD MODE ── */
+  #flashcard-wrap {
+    display: none;
+    margin-top: 10px;
+    animation: fadeUp 0.3s ease both;
+  }
+  .flashcard {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+    perspective: 800px;
+    position: relative;
+    overflow: hidden;
+  }
+  .flashcard:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .fc-hint { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; }
+  .fc-front { font-size: 1rem; font-weight: 700; color: var(--text); line-height: 1.4; }
+  .fc-back { display: none; font-size: 0.9rem; color: #a7f3d0; line-height: 1.5; }
+  .fc-back.shown { display: block; }
+  .fc-front.hidden { display: none; }
+  .fc-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; gap: 8px; }
+  .fc-nav-btn {
+    padding: 8px 18px;
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .fc-nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .fc-counter { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); }
+
+  /* ── MNEMONICS ── */
+  #mnemonics-wrap {
+    display: none;
+    margin-top: 10px;
+    animation: fadeUp 0.3s ease both;
+  }
+  .mnemonic-list {
+    display: grid;
+    gap: 10px;
+  }
+  .mnemonic-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    border-radius: 0 10px 10px 0;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .mnemonic-item b { color: var(--accent); }
+  .mnemonic-item em { color: #c4c9d4; font-style: normal; }
+
+  /* ── HEADER ── */
   header {
     width: 100%;
     max-width: 760px;
@@ -76,6 +295,7 @@
     font-family: 'Space Mono', monospace;
   }
 
+  /* ── SCOREBOARD ── */
   #scoreboard {
     width: 100%;
     max-width: 760px;
@@ -90,44 +310,14 @@
     animation: fadeDown 0.6s 0.1s ease both;
   }
 
-  .score-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
+  .score-label { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .score-value { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
 
-  .score-value {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--accent);
-  }
+  .progress-wrap { flex: 1; margin: 0 20px; height: 6px; background: var(--border); border-radius: 100px; overflow: hidden; }
+  .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); border-radius: 100px; transition: width 0.5s ease; box-shadow: 0 0 12px var(--glow); }
+  .q-counter { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--muted); white-space: nowrap; }
 
-  .progress-wrap {
-    flex: 1;
-    margin: 0 20px;
-    height: 6px;
-    background: var(--border);
-    border-radius: 100px;
-    overflow: hidden;
-  }
-
-  .progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    border-radius: 100px;
-    transition: width 0.5s ease;
-    box-shadow: 0 0 12px var(--glow);
-  }
-
-  .q-counter {
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-    color: var(--muted);
-    white-space: nowrap;
-  }
-
+  /* ── QUIZ CARD ── */
   #quiz-card {
     width: 100%;
     max-width: 760px;
@@ -142,40 +332,34 @@
 
   #quiz-card::before {
     content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
     background: linear-gradient(90deg, var(--accent2), var(--accent));
   }
 
-  .q-number {
+  /* ── HINT BAR (inline during quiz) ── */
+  .hint-bar {
+    display: none;
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    background: rgba(124,58,237,0.1);
+    border: 1px solid rgba(124,58,237,0.3);
+    border-radius: 10px;
     font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    opacity: 0.8;
-  }
-
-  .q-text {
-    font-size: 1.15rem;
-    font-weight: 700;
+    font-size: 11px;
+    color: #c4b5fd;
     line-height: 1.5;
-    margin-bottom: 28px;
-    color: #f0f2f8;
+    letter-spacing: 0.5px;
   }
+  .hint-bar.visible { display: block; animation: fadeUp 0.3s ease both; }
 
-  .choices {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
+  .q-number { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; opacity: 0.8; }
+  .q-text { font-size: 1.15rem; font-weight: 700; line-height: 1.5; margin-bottom: 28px; color: #f0f2f8; }
 
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
   @media (max-width: 560px) {
     .choices { grid-template-columns: 1fr; }
     #quiz-card { padding: 22px 18px; }
+    .top-bar { justify-content: flex-start; }
   }
 
   .choice-btn {
@@ -195,91 +379,20 @@
     align-items: flex-start;
     gap: 10px;
   }
+  .choice-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(0,229,255,0.06); transform: translateY(-2px); box-shadow: 0 4px 18px rgba(0,229,255,0.1); }
+  .choice-btn:active:not(:disabled) { transform: scale(0.97); }
+  .choice-letter { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; min-width: 24px; background: var(--border); border-radius: 6px; font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; color: var(--muted); transition: background 0.2s, color 0.2s; }
+  .choice-btn.correct { border-color: var(--correct); background: rgba(0,201,122,0.12); animation: pulse-green 0.4s ease; }
+  .choice-btn.correct .choice-letter { background: var(--correct); color: #000; }
+  .choice-btn.wrong { border-color: var(--wrong); background: rgba(255,59,92,0.12); animation: shake 0.4s ease; }
+  .choice-btn.wrong .choice-letter { background: var(--wrong); color: #fff; }
+  .choice-btn:disabled { cursor: default; }
 
-  .choice-btn:hover:not(:disabled) {
-    border-color: var(--accent);
-    background: rgba(0,229,255,0.06);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 18px rgba(0,229,255,0.1);
-  }
-
-  .choice-btn:active:not(:disabled) {
-    transform: scale(0.97);
-  }
-
-  .choice-letter {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    min-width: 24px;
-    background: var(--border);
-    border-radius: 6px;
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--muted);
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .choice-btn.correct {
-    border-color: var(--correct);
-    background: rgba(0,201,122,0.12);
-    animation: pulse-green 0.4s ease;
-  }
-
-  .choice-btn.correct .choice-letter {
-    background: var(--correct);
-    color: #000;
-  }
-
-  .choice-btn.wrong {
-    border-color: var(--wrong);
-    background: rgba(255,59,92,0.12);
-    animation: shake 0.4s ease;
-  }
-
-  .choice-btn.wrong .choice-letter {
-    background: var(--wrong);
-    color: #fff;
-  }
-
-  .choice-btn:disabled {
-    cursor: default;
-  }
-
-  .explanation {
-    margin-top: 18px;
-    padding: 16px 20px;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    animation: fadeUp 0.4s ease both;
-    display: none;
-  }
-
-  .explanation.correct-exp {
-    background: rgba(0,201,122,0.08);
-    border: 1px solid rgba(0,201,122,0.25);
-    color: #a7f3d0;
-  }
-
-  .explanation.wrong-exp {
-    background: rgba(255,59,92,0.07);
-    border: 1px solid rgba(255,59,92,0.25);
-    color: #fca5a5;
-  }
-
-  .explanation b {
-    color: #fff;
-    font-weight: 700;
-  }
-
-  .exp-icon {
-    font-size: 1.1rem;
-    margin-right: 6px;
-  }
+  .explanation { margin-top: 18px; padding: 16px 20px; border-radius: 12px; font-size: 0.9rem; line-height: 1.6; animation: fadeUp 0.4s ease both; display: none; }
+  .explanation.correct-exp { background: rgba(0,201,122,0.08); border: 1px solid rgba(0,201,122,0.25); color: #a7f3d0; }
+  .explanation.wrong-exp { background: rgba(255,59,92,0.07); border: 1px solid rgba(255,59,92,0.25); color: #fca5a5; }
+  .explanation b { color: #fff; font-weight: 700; }
+  .exp-icon { font-size: 1.1rem; margin-right: 6px; }
 
   #next-btn {
     display: none;
@@ -299,10 +412,10 @@
     box-shadow: 0 4px 24px rgba(0,229,255,0.15);
     animation: fadeUp 0.4s ease both;
   }
-
   #next-btn:hover { opacity: 0.9; transform: translateY(-1px); }
   #next-btn:active { transform: scale(0.98); }
 
+  /* ── RESULT ── */
   #result-screen {
     display: none;
     width: 100%;
@@ -316,15 +429,7 @@
     position: relative;
     overflow: hidden;
   }
-
-  #result-screen::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-  }
-
+  #result-screen::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent2), var(--accent)); }
   .result-emoji { font-size: 4rem; margin-bottom: 16px; display: block; }
   .result-score { font-size: 3.5rem; font-weight: 800; color: var(--accent); margin-bottom: 8px; }
   .result-label { color: var(--muted); font-family: 'Space Mono', monospace; font-size: 13px; margin-bottom: 20px; }
@@ -333,56 +438,84 @@
   #restart-btn {
     padding: 15px 40px;
     background: linear-gradient(135deg, var(--accent2), var(--accent));
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.15s;
+    color: #fff; border: none; border-radius: 12px;
+    font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: opacity 0.2s, transform 0.15s;
     box-shadow: 0 4px 24px rgba(0,229,255,0.2);
   }
-
   #restart-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes shake {
-    0%,100% { transform: translateX(0); }
-    25% { transform: translateX(-6px); }
-    75% { transform: translateX(6px); }
-  }
-
-  @keyframes pulse-green {
-    0% { box-shadow: 0 0 0 0 rgba(0,201,122,0.4); }
-    100% { box-shadow: 0 0 0 12px rgba(0,201,122,0); }
-  }
-
-  .card-transition {
-    animation: fadeUp 0.4s ease both;
-  }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+  @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(0,201,122,0.4); } 100% { box-shadow: 0 0 0 12px rgba(0,201,122,0); } }
+  .card-transition { animation: fadeUp 0.4s ease both; }
 </style>
 </head>
 <body>
 
+<!-- TOP BAR: Language + Cram Tools -->
+<div class="top-bar">
+  <button class="cram-toggle-btn" id="cramToggle" onclick="toggleCramPanel()">⚡ <span data-t="cramTools">Cram Tools</span></button>
+  <button class="lang-btn active" id="btnEN" onclick="setLang('en')"><span class="flag">🇬🇧</span> EN</button>
+  <button class="lang-btn" id="btnSV" onclick="setLang('sv')"><span class="flag">🇸🇪</span> SV</button>
+</div>
+
+<!-- CRAM TOOLS PANEL -->
+<div id="cram-panel">
+  <div class="cram-panel-title">⚡ <span data-t="cramTitle">Last-Minute Cram Tools</span></div>
+  <div class="cram-options">
+    <button class="cram-opt-btn" id="opt-hints" onclick="toggleHints()">
+      <span class="dot"></span> <span data-t="optHints">Live Hints</span>
+    </button>
+    <button class="cram-opt-btn" id="opt-cheat" onclick="toggleCheatSheet()">
+      <span class="dot"></span> <span data-t="optCheat">Key Concepts Sheet</span>
+    </button>
+    <button class="cram-opt-btn" id="opt-flash" onclick="toggleFlashcards()">
+      <span class="dot"></span> <span data-t="optFlash">Flashcard Mode</span>
+    </button>
+    <button class="cram-opt-btn" id="opt-mnemonic" onclick="toggleMnemonics()">
+      <span class="dot"></span> <span data-t="optMnemonic">Memory Tricks</span>
+    </button>
+  </div>
+
+  <!-- KEY CONCEPTS CHEAT SHEET -->
+  <div id="cheat-sheet">
+    <div class="cheat-heading" data-t="cheatHeading">📋 Key Concepts Reference</div>
+    <div class="cheat-grid" id="cheat-grid"></div>
+  </div>
+
+  <!-- FLASHCARD MODE -->
+  <div id="flashcard-wrap">
+    <div class="cheat-heading" data-t="flashHeading">🃏 Flashcard Drill — tap card to reveal</div>
+    <div class="flashcard" id="flashcard" onclick="flipFlashcard()">
+      <div class="fc-hint" data-t="flashTap">TAP TO REVEAL ANSWER</div>
+      <div class="fc-front" id="fc-front"></div>
+      <div class="fc-back" id="fc-back"></div>
+    </div>
+    <div class="fc-nav">
+      <button class="fc-nav-btn" onclick="prevFlash()">← <span data-t="prev">Prev</span></button>
+      <span class="fc-counter" id="fc-counter">1 / 10</span>
+      <button class="fc-nav-btn" onclick="nextFlash()"><span data-t="next">Next</span> →</button>
+    </div>
+  </div>
+
+  <!-- MNEMONICS / MEMORY TRICKS -->
+  <div id="mnemonics-wrap">
+    <div class="cheat-heading" data-t="mnemonicHeading">🧠 Memory Tricks & Mnemonics</div>
+    <div class="mnemonic-list" id="mnemonic-list"></div>
+  </div>
+</div>
+
 <header>
-  <div class="badge">⚗️ Chemistry Cram</div>
-  <h1>Carbon & Organic Chemistry</h1>
-  <p class="subtitle">25 Questions · Instant Feedback · Randomized</p>
+  <div class="badge">⚗️ <span data-t="badgeText">Chemistry Cram</span></div>
+  <h1 data-t="mainTitle">Carbon & Organic Chemistry</h1>
+  <p class="subtitle" data-t="subtitle">25 Questions · Instant Feedback · Randomized</p>
 </header>
 
 <div id="scoreboard">
   <div>
-    <div class="score-label">Score</div>
+    <div class="score-label" data-t="scoreLabel">Score</div>
     <div class="score-value" id="score-display">0 / 0</div>
   </div>
   <div class="progress-wrap">
@@ -393,302 +526,382 @@
 
 <div id="quiz-card">
   <div class="q-number" id="q-number">Question 1</div>
+  <div class="hint-bar" id="hint-bar"></div>
   <div class="q-text" id="q-text"></div>
   <div class="choices" id="choices"></div>
   <div class="explanation" id="explanation"></div>
-  <button id="next-btn">Next Question →</button>
+  <button id="next-btn" data-t="nextQ">Next Question →</button>
 </div>
 
 <div id="result-screen">
   <span class="result-emoji" id="result-emoji">🎉</span>
   <div class="result-score" id="result-score"></div>
-  <div class="result-label">Final Score</div>
+  <div class="result-label" data-t="finalScore">Final Score</div>
   <div class="result-msg" id="result-msg"></div>
-  <button id="restart-btn">🔄 Restart Quiz</button>
+  <button id="restart-btn" data-t="restart">🔄 Restart Quiz</button>
 </div>
 
 <script>
-const ALL_QUESTIONS = [
-  // --- Carbon Basics ---
-  {
-    q: "How many covalent bonds can a single carbon atom form?",
-    choices: ["2", "4", "6", "3"],
-    correct: 1,
-    exp_correct: "<b>Carbon forms 4 covalent bonds</b> because it has 4 electrons in its outer shell and needs 4 more to be stable. This lets carbon bond with itself and many other atoms.",
-    exp_wrong: "Carbon has <b>4 valence electrons</b>, so it always forms 4 bonds — not 2, 3, or 6. This tetravalence is what makes carbon so versatile."
+// ─────────────────────────────────────────────────────────────────
+// TRANSLATIONS
+// ─────────────────────────────────────────────────────────────────
+const TRANSLATIONS = {
+  en: {
+    cramTools: "Cram Tools", cramTitle: "Last-Minute Cram Tools",
+    optHints: "Live Hints", optCheat: "Key Concepts Sheet",
+    optFlash: "Flashcard Mode", optMnemonic: "Memory Tricks",
+    cheatHeading: "📋 Key Concepts Reference", flashHeading: "🃏 Flashcard Drill — tap card to reveal",
+    flashTap: "TAP TO REVEAL ANSWER", mnemonicHeading: "🧠 Memory Tricks & Mnemonics",
+    badgeText: "Chemistry Cram", mainTitle: "Carbon & Organic Chemistry",
+    subtitle: "25 Questions · Instant Feedback · Randomized",
+    scoreLabel: "Score", finalScore: "Final Score",
+    nextQ: "Next Question →", nextResults: "See Results 🏆", restart: "🔄 Restart Quiz",
+    prev: "Prev", next: "Next",
+    qLabel: "Question", ofLabel: "of",
+    results: [
+      { min: 0.92, emoji: "🏆", msg: "Outstanding! You've mastered carbon chemistry. You're ready for the exam!" },
+      { min: 0.76, emoji: "⭐", msg: "Great work! Solid understanding — review a few weak spots and you'll ace it." },
+      { min: 0.56, emoji: "📚", msg: "Good effort! Some concepts need more review — revisit the topics you missed." },
+      { min: 0.40, emoji: "💪", msg: "Keep going! Focus on the explanations for missed questions before your exam." },
+      { min: 0,    emoji: "🔬", msg: "Don't give up — start with the basics: bonding, naming, and combustion. You'll get there!" }
+    ]
   },
-  {
-    q: "Why is carbon often called the 'building block of life'?",
-    choices: [
-      "It is the lightest element",
-      "It can form long, complex chains and rings with itself and other elements",
-      "It reacts violently with water",
-      "It has the highest melting point of all elements"
-    ],
-    correct: 1,
-    exp_correct: "Carbon can form <b>long chains, branches, and rings</b> with itself and bond with H, O, N, and S. This allows millions of different organic molecules — the basis of all living things.",
-    exp_wrong: "The reason carbon is special is its ability to form <b>complex, varied structures</b> through 4 bonds. Being light or having a high melting point are not why it's the basis of life."
-  },
-  {
-    q: "In diamond, carbon atoms are arranged in a:",
-    choices: [
-      "Flat layered sheet structure",
-      "Random amorphous pattern",
-      "3D tetrahedral lattice where each carbon bonds to 4 others",
-      "Ring of exactly 6 carbon atoms"
-    ],
-    correct: 2,
-    exp_correct: "Diamond has a <b>3D tetrahedral lattice</b> — every carbon is covalently bonded to 4 others in all directions. This makes it extremely hard.",
-    exp_wrong: "Flat layered sheets describe <b>graphite, not diamond</b>. Diamond's strength comes from its 3D network of 4-bond tetrahedra."
-  },
-  {
-    q: "Which allotrope of carbon has layers that can slide over each other, making it slippery?",
-    choices: ["Diamond", "Graphite", "Charcoal", "Carbon fiber"],
-    correct: 1,
-    exp_correct: "<b>Graphite</b> has carbon atoms in flat hexagonal layers held together by weak van der Waals forces, so layers slide easily — useful as a lubricant and in pencils.",
-    exp_wrong: "<b>Graphite</b>, not diamond, is slippery. Diamond's rigid 3D structure makes it the hardest natural substance, while graphite's layers glide freely."
-  },
-  {
-    q: "Why can carbon form so many more compounds than most other elements?",
-    choices: [
-      "Carbon is the most abundant element on Earth",
-      "Carbon atoms are very large",
-      "Carbon can form 4 bonds and chain with itself almost indefinitely",
-      "Carbon only reacts with hydrogen"
-    ],
-    correct: 2,
-    exp_correct: "Carbon's <b>4 bonding sites and ability to catenate</b> (bond to itself) create an enormous variety of chains, rings, and branched structures — millions of unique compounds.",
-    exp_wrong: "Carbon's uniqueness comes from <b>4 bonds + self-chaining</b>, not abundance or size. Silicon also has 4 bonds but chains far less effectively."
-  },
-  // --- Alkanes, Alkenes, Alkynes ---
-  {
-    q: "What is the correct molecular formula for propane?",
-    choices: ["C₂H₆", "C₃H₈", "C₃H₆", "C₄H₁₀"],
-    correct: 1,
-    exp_correct: "<b>Propane is C₃H₈</b>. Alkanes follow CₙH₂ₙ₊₂, so 3 carbons gives 2(3)+2 = 8 hydrogens.",
-    exp_wrong: "Use the alkane formula <b>CₙH₂ₙ₊₂</b>. For 3 carbons: 2×3+2 = 8 H atoms → C₃H₈ is propane."
-  },
-  {
-    q: "Which suffix indicates a hydrocarbon has a triple bond?",
-    choices: ["-ane", "-ene", "-yne", "-ol"],
-    correct: 2,
-    exp_correct: "<b>-yne</b> indicates a triple bond (alkyne). -ane = single, -ene = double. Example: propyne has a C≡C triple bond.",
-    exp_wrong: "The suffixes are: -ane (single), -ene (double), <b>-yne (triple)</b>. -ol indicates an alcohol, not a hydrocarbon type."
-  },
-  {
-    q: "Why does butane (C₄H₁₀) have a higher boiling point than methane (CH₄)?",
-    choices: [
-      "Butane has more hydrogen bonds",
-      "Butane has a longer chain, creating stronger van der Waals forces between molecules",
-      "Methane has a triple bond",
-      "Butane is a gas while methane is a liquid"
-    ],
-    correct: 1,
-    exp_correct: "Longer hydrocarbon chains have <b>more surface area and stronger van der Waals (dispersion) forces</b> between molecules, requiring more energy to separate them — hence higher boiling points.",
-    exp_wrong: "Hydrocarbons don't hydrogen bond. The key is <b>longer chains = more van der Waals forces = higher boiling point</b>. Methane is actually a gas at room temperature, not a liquid."
-  },
-  {
-    q: "Which of these hydrocarbons is most reactive?",
-    choices: ["Methane (C-C single bond only)", "Ethane", "Ethene (C=C double bond)", "Propane"],
-    correct: 2,
-    exp_correct: "<b>Alkenes with double bonds</b> are more reactive than alkanes. The extra bond is weaker and more accessible, making it easy for other molecules to react (addition reactions).",
-    exp_wrong: "<b>Double bonds in alkenes</b> make them far more reactive than single-bond alkanes. A triple bond in alkynes is even more reactive."
-  },
-  {
-    q: "What is the name of the simplest alkyne, with formula C₂H₂?",
-    choices: ["Ethane", "Ethene", "Ethyne (acetylene)", "Propyne"],
-    correct: 2,
-    exp_correct: "<b>Ethyne (commonly called acetylene)</b> is the simplest alkyne — 2 carbons connected by a triple bond (C≡C). It is used in welding torches.",
-    exp_wrong: "C₂H₂ with a triple bond is <b>ethyne (acetylene)</b>. Ethane is C₂H₆ (single bond), ethene is C₂H₄ (double bond)."
-  },
-  // --- Chemical Formulas and Models ---
-  {
-    q: "What does a molecular formula tell you that a structural formula does not?",
-    choices: [
-      "The shape of the molecule",
-      "The exact number of each type of atom",
-      "How the atoms are bonded together",
-      "The 3D arrangement of atoms"
-    ],
-    correct: 1,
-    exp_correct: "A <b>molecular formula</b> (e.g., C₃H₈) simply lists the exact count of each atom. A structural formula additionally shows how atoms are connected.",
-    exp_wrong: "A molecular formula gives <b>atom counts only</b>. Structural formulas show bonding arrangement. Neither shows full 3D shape (that requires a space-filling or ball-and-stick model)."
-  },
-  {
-    q: "Which structural formula represents methane correctly?",
-    choices: [
-      "H-C≡C-H",
-      "H₂C=CH₂",
-      "A carbon atom bonded to 4 hydrogen atoms",
-      "CH₃-CH₃"
-    ],
-    correct: 2,
-    exp_correct: "<b>Methane (CH₄)</b> is one carbon atom bonded to 4 hydrogen atoms. It's the simplest alkane with 4 single bonds around carbon.",
-    exp_wrong: "H-C≡C-H is ethyne, H₂C=CH₂ is ethene, and CH₃-CH₃ is ethane. <b>Methane = one carbon + four hydrogens</b>, no carbon-carbon bond."
-  },
-  {
-    q: "Propyne has the formula C₃H₄. Which bond is present in propyne?",
-    choices: [
-      "Three single C-C bonds",
-      "One double bond between two carbons",
-      "One triple bond between two carbons",
-      "Two double bonds"
-    ],
-    correct: 2,
-    exp_correct: "<b>Propyne (an alkyne)</b> contains a C≡C triple bond. The -yne suffix always means at least one triple bond in the carbon chain.",
-    exp_wrong: "Propyne ends in <b>-yne</b>, which always signals a <b>triple bond (C≡C)</b>. Double bonds belong to alkenes (-ene)."
-  },
-  // --- Alcohols and Organic Acids ---
-  {
-    q: "Which functional group identifies a molecule as an alcohol?",
-    choices: ["-COOH", "-OH", "-CHO", "-CO-"],
-    correct: 1,
-    exp_correct: "The <b>hydroxyl group (-OH)</b> attached to a carbon chain defines an alcohol. Examples: methanol (CH₃OH), ethanol (C₂H₅OH).",
-    exp_wrong: "-COOH is a carboxyl group (organic acid), -CHO is an aldehyde, -CO- is a ketone. <b>-OH = alcohol</b>."
-  },
-  {
-    q: "Ethylene glycol is used as antifreeze in cars. Why is it suitable for winter use?",
-    choices: [
-      "It has a very high boiling point",
-      "It lowers the freezing point of water when mixed with it",
-      "It reacts with ice to produce heat",
-      "It is less dense than water"
-    ],
-    correct: 1,
-    exp_correct: "Ethylene glycol <b>lowers the freezing point</b> of water (freezing point depression), preventing the coolant from freezing in cold temperatures.",
-    exp_wrong: "The antifreeze effect is <b>freezing point depression</b> — adding glycol disrupts water's ability to form ice. It doesn't generate heat or work by density differences."
-  },
-  {
-    q: "What makes methanol MORE dangerous to drink than ethanol?",
-    choices: [
-      "Methanol has a much higher alcohol content",
-      "Methanol is metabolized into formaldehyde and formic acid, which are highly toxic",
-      "Methanol is less soluble in water",
-      "Methanol contains more carbon atoms"
-    ],
-    correct: 1,
-    exp_correct: "When metabolized, <b>methanol produces formaldehyde and formic acid</b>, which cause blindness and death even in small amounts. Ethanol is far safer for consumption.",
-    exp_wrong: "The danger lies in methanol's <b>toxic metabolites (formaldehyde, formic acid)</b>. Methanol actually has fewer carbons than ethanol — CH₃OH vs. C₂H₅OH."
-  },
-  {
-    q: "The carboxyl group (-COOH) is found in:",
-    choices: ["Alcohols", "Alkenes", "Organic acids", "Esters"],
-    correct: 2,
-    exp_correct: "<b>Organic (carboxylic) acids</b> contain the -COOH group. Examples include methanoic acid (HCOOH) and ethanoic acid (CH₃COOH, vinegar).",
-    exp_wrong: "-COOH is the defining group of <b>carboxylic acids</b>. Alcohols have -OH, alkenes have C=C double bonds, and esters have -COO- links."
-  },
-  {
-    q: "Methanoic acid (formic acid) has the formula HCOOH. Which best describes it?",
-    choices: [
-      "An alkane with one carbon",
-      "The simplest carboxylic acid, with one -COOH group",
-      "An alcohol with one carbon",
-      "A ketone"
-    ],
-    correct: 1,
-    exp_correct: "<b>Methanoic acid is the simplest carboxylic acid</b>, consisting of just a -COOH group (H-COOH). It is found in ant venom and stinging nettles.",
-    exp_wrong: "HCOOH contains a <b>-COOH (carboxyl) group</b>, making it the simplest carboxylic acid — not an alcohol, alkane, or ketone."
-  },
-  // --- Esters and Fats ---
-  {
-    q: "How is an ester formed?",
-    choices: [
-      "By burning a hydrocarbon in oxygen",
-      "By reacting an alcohol with a carboxylic acid",
-      "By adding hydrogen to an alkene",
-      "By dissolving a salt in water"
-    ],
-    correct: 1,
-    exp_correct: "Esters form via <b>esterification</b>: an alcohol + carboxylic acid → ester + water. Example: ethanol + ethanoic acid → ethyl ethanoate.",
-    exp_wrong: "Esters come from <b>alcohol + carboxylic acid</b> reactions. Combustion makes CO₂/H₂O, hydrogenation involves adding H₂ to double bonds."
-  },
-  {
-    q: "Why do esters often smell fruity or floral?",
-    choices: [
-      "They contain nitrogen, which is aromatic",
-      "Esters are volatile and their molecules interact with smell receptors in pleasant ways",
-      "They are formed from burning reactions",
-      "Esters always contain sulfur compounds"
-    ],
-    correct: 1,
-    exp_correct: "<b>Esters are volatile</b> (evaporate easily) and their molecular shapes interact with our smell receptors in ways we perceive as fruity or floral. Different esters give different smells.",
-    exp_wrong: "The pleasant smell comes from <b>ester molecules being volatile and interacting with olfactory receptors</b>. They contain no nitrogen or sulfur — just C, H, and O."
-  },
-  {
-    q: "Fats and oils are chemically classified as:",
-    choices: ["Alkanes", "Alcohols", "Esters of glycerol and fatty acids", "Carboxylic acids"],
-    correct: 2,
-    exp_correct: "<b>Fats are triesters</b> — formed from one glycerol molecule bonded to three fatty acid chains. This is why they are called triglycerides.",
-    exp_wrong: "Fats are <b>esters (triglycerides)</b>, not simple alkanes or acids. They form from glycerol + 3 fatty acids through esterification."
-  },
-  {
-    q: "Methyl ethanoate smells like glue. What two compounds were reacted to make it?",
-    choices: [
-      "Methanol + ethanoic acid",
-      "Ethanol + methanoic acid",
-      "Propanol + methanoic acid",
-      "Methane + ethene"
-    ],
-    correct: 0,
-    exp_correct: "<b>Methyl ethanoate = methanol + ethanoic acid</b>. The 'methyl' comes from methanol and 'ethanoate' from ethanoic acid.",
-    exp_wrong: "Ester naming: the first word (methyl) = the alcohol (methanol); the second (ethanoate) = the acid (ethanoic acid). So: <b>methanol + ethanoic acid</b>."
-  },
-  // --- Combustion and Environment ---
-  {
-    q: "What are the products of complete combustion of a hydrocarbon?",
-    choices: [
-      "Carbon monoxide and water",
-      "Carbon dioxide and water",
-      "Carbon and hydrogen gas",
-      "Oxygen and nitrogen"
-    ],
-    correct: 1,
-    exp_correct: "Complete combustion (plenty of oxygen) produces <b>CO₂ and H₂O</b>. Incomplete combustion (limited oxygen) produces CO or soot instead.",
-    exp_wrong: "<b>Complete combustion</b> always yields CO₂ + H₂O. CO is only formed in <b>incomplete</b> combustion when oxygen is limited."
-  },
-  {
-    q: "Why is ethanol sometimes considered more environmentally friendly than gasoline as a fuel?",
-    choices: [
-      "Ethanol produces no CO₂ when burned",
-      "Ethanol is made from plants that absorb CO₂ as they grow, making it roughly carbon-neutral",
-      "Ethanol burns at a lower temperature",
-      "Ethanol contains no hydrogen atoms"
-    ],
-    correct: 1,
-    exp_correct: "Ethanol from crops is considered <b>carbon-neutral</b> because the CO₂ released when burned was previously absorbed by the plants during photosynthesis.",
-    exp_wrong: "Ethanol still produces CO₂ when burned. The environmental benefit is the <b>carbon cycle</b>: plants absorb CO₂ to grow → ethanol burned → CO₂ returned. Gasoline releases ancient stored carbon."
-  },
-  {
-    q: "Which statement best explains why fossil fuels contribute more to climate change than biofuels like ethanol?",
-    choices: [
-      "Fossil fuels burn hotter, causing more direct heat damage",
-      "Fossil fuels release carbon that was locked underground for millions of years, adding new CO₂ to the atmosphere",
-      "Biofuels contain more oxygen than fossil fuels",
-      "Fossil fuels produce water vapor, which traps heat"
-    ],
-    correct: 1,
-    exp_correct: "Fossil fuels release <b>ancient carbon</b> stored underground, making a net addition of CO₂ to today's atmosphere. Biofuels recycle <b>existing atmospheric carbon</b> through plant growth.",
-    exp_wrong: "The key issue is <b>net carbon addition</b>. Fossil fuels release carbon that was trapped for millions of years, while biofuels recycle carbon already in the atmosphere."
-  },
-  {
-    q: "A student burns propane (C₃H₈) in excess oxygen. Which equation correctly shows the products?",
-    choices: [
-      "C₃H₈ + O₂ → C + H₂O",
-      "C₃H₈ + O₂ → CO + H₂",
-      "C₃H₈ + 5O₂ → 3CO₂ + 4H₂O",
-      "C₃H₈ → 3C + 4H₂"
-    ],
-    correct: 2,
-    exp_correct: "<b>C₃H₈ + 5O₂ → 3CO₂ + 4H₂O</b> is balanced complete combustion. 3 carbons → 3 CO₂; 8 hydrogens → 4 H₂O; 5 O₂ balances the oxygen.",
-    exp_wrong: "Complete combustion always gives <b>CO₂ + H₂O</b>. Check the balance: 3C → 3CO₂, 8H → 4H₂O, requiring 5O₂. Option C is the only correctly balanced equation."
+  sv: {
+    cramTools: "Pluggverktyg", cramTitle: "Sista-minuten Pluggverktyg",
+    optHints: "Live-tips", optCheat: "Nyckelbegrepp",
+    optFlash: "Flashkort", optMnemonic: "Minnesknep",
+    cheatHeading: "📋 Referensblad – Nyckelbegrepp", flashHeading: "🃏 Flashkort – tryck för att visa svar",
+    flashTap: "TRYCK FÖR ATT VISA SVAR", mnemonicHeading: "🧠 Minnesknep & Eselsbryggor",
+    badgeText: "Kemi-plugg", mainTitle: "Kol & Organisk Kemi",
+    subtitle: "25 Frågor · Direkt Feedback · Slumpad ordning",
+    scoreLabel: "Poäng", finalScore: "Slutresultat",
+    nextQ: "Nästa fråga →", nextResults: "Visa resultat 🏆", restart: "🔄 Starta om",
+    prev: "Föregående", next: "Nästa",
+    qLabel: "Fråga", ofLabel: "av",
+    results: [
+      { min: 0.92, emoji: "🏆", msg: "Utmärkt! Du behärskar kolkemin. Du är redo för provet!" },
+      { min: 0.76, emoji: "⭐", msg: "Bra jobbat! Solid förståelse — repetera några svaga punkter så klarar du det." },
+      { min: 0.56, emoji: "📚", msg: "Bra försök! Vissa begrepp behöver mer repetition — gå igenom de du missade." },
+      { min: 0.40, emoji: "💪", msg: "Fortsätt! Fokusera på förklaringarna till de frågor du missade före provet." },
+      { min: 0,    emoji: "🔬", msg: "Ge inte upp — börja med grunderna: bindningar, namngivning och förbränning. Det löser sig!" }
+    ]
   }
-];
+};
 
+// ─────────────────────────────────────────────────────────────────
+// QUESTION BANK (EN + SV)
+// ─────────────────────────────────────────────────────────────────
+const ALL_QUESTIONS = {
+  en: [
+    { q: "How many covalent bonds can a single carbon atom form?", choices: ["2","4","6","3"], correct: 1, exp_correct: "<b>Carbon forms 4 covalent bonds</b> because it has 4 electrons in its outer shell and needs 4 more to be stable. This lets carbon bond with itself and many other atoms.", exp_wrong: "Carbon has <b>4 valence electrons</b>, so it always forms 4 bonds — not 2, 3, or 6. This tetravalence is what makes carbon so versatile.", hint: "Think about how many electrons carbon has in its outer shell." },
+    { q: "Why is carbon often called the 'building block of life'?", choices: ["It is the lightest element","It can form long, complex chains and rings with itself and other elements","It reacts violently with water","It has the highest melting point of all elements"], correct: 1, exp_correct: "Carbon can form <b>long chains, branches, and rings</b> with itself and bond with H, O, N, and S. This allows millions of different organic molecules — the basis of all living things.", exp_wrong: "The reason carbon is special is its ability to form <b>complex, varied structures</b> through 4 bonds. Being light or having a high melting point are not why it's the basis of life.", hint: "Consider what makes carbon structurally unique compared to other elements." },
+    { q: "In diamond, carbon atoms are arranged in a:", choices: ["Flat layered sheet structure","Random amorphous pattern","3D tetrahedral lattice where each carbon bonds to 4 others","Ring of exactly 6 carbon atoms"], correct: 2, exp_correct: "Diamond has a <b>3D tetrahedral lattice</b> — every carbon is covalently bonded to 4 others in all directions. This makes it extremely hard.", exp_wrong: "Flat layered sheets describe <b>graphite, not diamond</b>. Diamond's strength comes from its 3D network of 4-bond tetrahedra.", hint: "Diamond is the hardest natural substance — what structure would explain that?" },
+    { q: "Which allotrope of carbon has layers that can slide over each other, making it slippery?", choices: ["Diamond","Graphite","Charcoal","Carbon fiber"], correct: 1, exp_correct: "<b>Graphite</b> has carbon atoms in flat hexagonal layers held together by weak van der Waals forces, so layers slide easily — useful as a lubricant and in pencils.", exp_wrong: "<b>Graphite</b>, not diamond, is slippery. Diamond's rigid 3D structure makes it the hardest natural substance, while graphite's layers glide freely.", hint: "This allotrope is used in pencils." },
+    { q: "Why can carbon form so many more compounds than most other elements?", choices: ["Carbon is the most abundant element on Earth","Carbon atoms are very large","Carbon can form 4 bonds and chain with itself almost indefinitely","Carbon only reacts with hydrogen"], correct: 2, exp_correct: "Carbon's <b>4 bonding sites and ability to catenate</b> (bond to itself) create an enormous variety of chains, rings, and branched structures — millions of unique compounds.", exp_wrong: "Carbon's uniqueness comes from <b>4 bonds + self-chaining</b>, not abundance or size. Silicon also has 4 bonds but chains far less effectively.", hint: "The key word is 'catenation'." },
+    { q: "What is the correct molecular formula for propane?", choices: ["C₂H₆","C₃H₈","C₃H₆","C₄H₁₀"], correct: 1, exp_correct: "<b>Propane is C₃H₈</b>. Alkanes follow CₙH₂ₙ₊₂, so 3 carbons gives 2(3)+2 = 8 hydrogens.", exp_wrong: "Use the alkane formula <b>CₙH₂ₙ₊₂</b>. For 3 carbons: 2×3+2 = 8 H atoms → C₃H₈ is propane.", hint: "Alkane formula: CₙH₂ₙ₊₂. Propane has 3 carbons." },
+    { q: "Which suffix indicates a hydrocarbon has a triple bond?", choices: ["-ane","-ene","-yne","-ol"], correct: 2, exp_correct: "<b>-yne</b> indicates a triple bond (alkyne). -ane = single, -ene = double. Example: propyne has a C≡C triple bond.", exp_wrong: "The suffixes are: -ane (single), -ene (double), <b>-yne (triple)</b>. -ol indicates an alcohol, not a hydrocarbon type.", hint: "Remember: one, double, tri-ple → ane, ene, yne." },
+    { q: "Why does butane (C₄H₁₀) have a higher boiling point than methane (CH₄)?", choices: ["Butane has more hydrogen bonds","Butane has a longer chain, creating stronger van der Waals forces between molecules","Methane has a triple bond","Butane is a gas while methane is a liquid"], correct: 1, exp_correct: "Longer hydrocarbon chains have <b>more surface area and stronger van der Waals (dispersion) forces</b> between molecules, requiring more energy to separate them — hence higher boiling points.", exp_wrong: "Hydrocarbons don't hydrogen bond. The key is <b>longer chains = more van der Waals forces = higher boiling point</b>. Methane is actually a gas at room temperature, not a liquid.", hint: "More carbons = more surface area = stronger intermolecular forces." },
+    { q: "Which of these hydrocarbons is most reactive?", choices: ["Methane (C-C single bond only)","Ethane","Ethene (C=C double bond)","Propane"], correct: 2, exp_correct: "<b>Alkenes with double bonds</b> are more reactive than alkanes. The extra bond is weaker and more accessible, making it easy for other molecules to react (addition reactions).", exp_wrong: "<b>Double bonds in alkenes</b> make them far more reactive than single-bond alkanes. A triple bond in alkynes is even more reactive.", hint: "More bonds between C atoms doesn't always mean more stable." },
+    { q: "What is the name of the simplest alkyne, with formula C₂H₂?", choices: ["Ethane","Ethene","Ethyne (acetylene)","Propyne"], correct: 2, exp_correct: "<b>Ethyne (commonly called acetylene)</b> is the simplest alkyne — 2 carbons connected by a triple bond (C≡C). It is used in welding torches.", exp_wrong: "C₂H₂ with a triple bond is <b>ethyne (acetylene)</b>. Ethane is C₂H₆ (single bond), ethene is C₂H₄ (double bond).", hint: "2 carbons + triple bond → eth- + -yne." },
+    { q: "What does a molecular formula tell you that a structural formula does not?", choices: ["The shape of the molecule","The exact number of each type of atom","How the atoms are bonded together","The 3D arrangement of atoms"], correct: 1, exp_correct: "A <b>molecular formula</b> (e.g., C₃H₈) simply lists the exact count of each atom. A structural formula additionally shows how atoms are connected.", exp_wrong: "A molecular formula gives <b>atom counts only</b>. Structural formulas show bonding arrangement. Neither shows full 3D shape (that requires a space-filling or ball-and-stick model).", hint: "Think about what 'C₃H₈' tells you versus a drawn-out structure." },
+    { q: "Which structural formula represents methane correctly?", choices: ["H-C≡C-H","H₂C=CH₂","A carbon atom bonded to 4 hydrogen atoms","CH₃-CH₃"], correct: 2, exp_correct: "<b>Methane (CH₄)</b> is one carbon atom bonded to 4 hydrogen atoms. It's the simplest alkane with 4 single bonds around carbon.", exp_wrong: "H-C≡C-H is ethyne, H₂C=CH₂ is ethene, and CH₃-CH₃ is ethane. <b>Methane = one carbon + four hydrogens</b>, no carbon-carbon bond.", hint: "Methane is the simplest hydrocarbon — just 1 carbon." },
+    { q: "Propyne has the formula C₃H₄. Which bond is present in propyne?", choices: ["Three single C-C bonds","One double bond between two carbons","One triple bond between two carbons","Two double bonds"], correct: 2, exp_correct: "<b>Propyne (an alkyne)</b> contains a C≡C triple bond. The -yne suffix always means at least one triple bond in the carbon chain.", exp_wrong: "Propyne ends in <b>-yne</b>, which always signals a <b>triple bond (C≡C)</b>. Double bonds belong to alkenes (-ene).", hint: "-yne suffix = triple bond." },
+    { q: "Which functional group identifies a molecule as an alcohol?", choices: ["-COOH","-OH","-CHO","-CO-"], correct: 1, exp_correct: "The <b>hydroxyl group (-OH)</b> attached to a carbon chain defines an alcohol. Examples: methanol (CH₃OH), ethanol (C₂H₅OH).", exp_wrong: "-COOH is a carboxyl group (organic acid), -CHO is an aldehyde, -CO- is a ketone. <b>-OH = alcohol</b>.", hint: "The -ol suffix in alcohol names hints at the functional group." },
+    { q: "Ethylene glycol is used as antifreeze in cars. Why is it suitable for winter use?", choices: ["It has a very high boiling point","It lowers the freezing point of water when mixed with it","It reacts with ice to produce heat","It is less dense than water"], correct: 1, exp_correct: "Ethylene glycol <b>lowers the freezing point</b> of water (freezing point depression), preventing the coolant from freezing in cold temperatures.", exp_wrong: "The antifreeze effect is <b>freezing point depression</b> — adding glycol disrupts water's ability to form ice. It doesn't generate heat or work by density differences.", hint: "What happens to a liquid's freezing point when you add a solute?" },
+    { q: "What makes methanol MORE dangerous to drink than ethanol?", choices: ["Methanol has a much higher alcohol content","Methanol is metabolized into formaldehyde and formic acid, which are highly toxic","Methanol is less soluble in water","Methanol contains more carbon atoms"], correct: 1, exp_correct: "When metabolized, <b>methanol produces formaldehyde and formic acid</b>, which cause blindness and death even in small amounts. Ethanol is far safer for consumption.", exp_wrong: "The danger lies in methanol's <b>toxic metabolites (formaldehyde, formic acid)</b>. Methanol actually has fewer carbons than ethanol — CH₃OH vs. C₂H₅OH.", hint: "Think about what the body does to methanol after it's consumed." },
+    { q: "The carboxyl group (-COOH) is found in:", choices: ["Alcohols","Alkenes","Organic acids","Esters"], correct: 2, exp_correct: "<b>Organic (carboxylic) acids</b> contain the -COOH group. Examples include methanoic acid (HCOOH) and ethanoic acid (CH₃COOH, vinegar).", exp_wrong: "-COOH is the defining group of <b>carboxylic acids</b>. Alcohols have -OH, alkenes have C=C double bonds, and esters have -COO- links.", hint: "The word 'carboxyl' contains 'carbon' + 'oxygen' + 'hydrogen'." },
+    { q: "Methanoic acid (formic acid) has the formula HCOOH. Which best describes it?", choices: ["An alkane with one carbon","The simplest carboxylic acid, with one -COOH group","An alcohol with one carbon","A ketone"], correct: 1, exp_correct: "<b>Methanoic acid is the simplest carboxylic acid</b>, consisting of just a -COOH group (H-COOH). It is found in ant venom and stinging nettles.", exp_wrong: "HCOOH contains a <b>-COOH (carboxyl) group</b>, making it the simplest carboxylic acid — not an alcohol, alkane, or ketone.", hint: "It's found in ant venom! What type of molecule has -COOH?" },
+    { q: "How is an ester formed?", choices: ["By burning a hydrocarbon in oxygen","By reacting an alcohol with a carboxylic acid","By adding hydrogen to an alkene","By dissolving a salt in water"], correct: 1, exp_correct: "Esters form via <b>esterification</b>: an alcohol + carboxylic acid → ester + water. Example: ethanol + ethanoic acid → ethyl ethanoate.", exp_wrong: "Esters come from <b>alcohol + carboxylic acid</b> reactions. Combustion makes CO₂/H₂O, hydrogenation involves adding H₂ to double bonds.", hint: "Esterification is the reaction — two types of organic molecules combine." },
+    { q: "Why do esters often smell fruity or floral?", choices: ["They contain nitrogen, which is aromatic","Esters are volatile and their molecules interact with smell receptors in pleasant ways","They are formed from burning reactions","Esters always contain sulfur compounds"], correct: 1, exp_correct: "<b>Esters are volatile</b> (evaporate easily) and their molecular shapes interact with our smell receptors in ways we perceive as fruity or floral. Different esters give different smells.", exp_wrong: "The pleasant smell comes from <b>ester molecules being volatile and interacting with olfactory receptors</b>. They contain no nitrogen or sulfur — just C, H, and O.", hint: "Perfumes and fruit flavourings often use esters." },
+    { q: "Fats and oils are chemically classified as:", choices: ["Alkanes","Alcohols","Esters of glycerol and fatty acids","Carboxylic acids"], correct: 2, exp_correct: "<b>Fats are triesters</b> — formed from one glycerol molecule bonded to three fatty acid chains. This is why they are called triglycerides.", exp_wrong: "Fats are <b>esters (triglycerides)</b>, not simple alkanes or acids. They form from glycerol + 3 fatty acids through esterification.", hint: "The word 'triglyceride' contains a big hint." },
+    { q: "Methyl ethanoate smells like glue. What two compounds were reacted to make it?", choices: ["Methanol + ethanoic acid","Ethanol + methanoic acid","Propanol + methanoic acid","Methane + ethene"], correct: 0, exp_correct: "<b>Methyl ethanoate = methanol + ethanoic acid</b>. The 'methyl' comes from methanol and 'ethanoate' from ethanoic acid.", exp_wrong: "Ester naming: the first word (methyl) = the alcohol (methanol); the second (ethanoate) = the acid (ethanoic acid). So: <b>methanol + ethanoic acid</b>.", hint: "Break the name: methyl → ? + ethanoate → ?" },
+    { q: "What are the products of complete combustion of a hydrocarbon?", choices: ["Carbon monoxide and water","Carbon dioxide and water","Carbon and hydrogen gas","Oxygen and nitrogen"], correct: 1, exp_correct: "Complete combustion (plenty of oxygen) produces <b>CO₂ and H₂O</b>. Incomplete combustion (limited oxygen) produces CO or soot instead.", exp_wrong: "<b>Complete combustion</b> always yields CO₂ + H₂O. CO is only formed in <b>incomplete</b> combustion when oxygen is limited.", hint: "Plenty of oxygen = complete combustion = C→CO₂, H→H₂O." },
+    { q: "Why is ethanol sometimes considered more environmentally friendly than gasoline as a fuel?", choices: ["Ethanol produces no CO₂ when burned","Ethanol is made from plants that absorb CO₂ as they grow, making it roughly carbon-neutral","Ethanol burns at a lower temperature","Ethanol contains no hydrogen atoms"], correct: 1, exp_correct: "Ethanol from crops is considered <b>carbon-neutral</b> because the CO₂ released when burned was previously absorbed by the plants during photosynthesis.", exp_wrong: "Ethanol still produces CO₂ when burned. The environmental benefit is the <b>carbon cycle</b>: plants absorb CO₂ to grow → ethanol burned → CO₂ returned. Gasoline releases ancient stored carbon.", hint: "Think about where the carbon in ethanol came from." },
+    { q: "Which statement best explains why fossil fuels contribute more to climate change than biofuels like ethanol?", choices: ["Fossil fuels burn hotter, causing more direct heat damage","Fossil fuels release carbon that was locked underground for millions of years, adding new CO₂ to the atmosphere","Biofuels contain more oxygen than fossil fuels","Fossil fuels produce water vapor, which traps heat"], correct: 1, exp_correct: "Fossil fuels release <b>ancient carbon</b> stored underground, making a net addition of CO₂ to today's atmosphere. Biofuels recycle <b>existing atmospheric carbon</b> through plant growth.", exp_wrong: "The key issue is <b>net carbon addition</b>. Fossil fuels release carbon that was trapped for millions of years, while biofuels recycle carbon already in the atmosphere.", hint: "Key word: 'net' carbon added to the atmosphere." },
+    { q: "A student burns propane (C₃H₈) in excess oxygen. Which equation correctly shows the products?", choices: ["C₃H₈ + O₂ → C + H₂O","C₃H₈ + O₂ → CO + H₂","C₃H₈ + 5O₂ → 3CO₂ + 4H₂O","C₃H₈ → 3C + 4H₂"], correct: 2, exp_correct: "<b>C₃H₈ + 5O₂ → 3CO₂ + 4H₂O</b> is balanced complete combustion. 3 carbons → 3 CO₂; 8 hydrogens → 4 H₂O; 5 O₂ balances the oxygen.", exp_wrong: "Complete combustion always gives <b>CO₂ + H₂O</b>. Check the balance: 3C → 3CO₂, 8H → 4H₂O, requiring 5O₂. Option C is the only correctly balanced equation.", hint: "Count atoms on each side. Excess O₂ = complete combustion." }
+  ],
+  sv: [
+    { q: "Hur många kovalenta bindningar kan en enskild kolatom bilda?", choices: ["2","4","6","3"], correct: 1, exp_correct: "<b>Kol bildar 4 kovalenta bindningar</b> eftersom det har 4 elektroner i sitt yttre skal och behöver 4 till för att vara stabilt. Detta gör att kol kan binda med sig självt och många andra atomer.", exp_wrong: "Kol har <b>4 valenselektroner</b>, så det bildar alltid 4 bindningar — inte 2, 3 eller 6. Denna tetravalens gör kolet så mångsidigt.", hint: "Tänk på hur många elektroner kol har i sitt yttre skal." },
+    { q: "Varför kallas kol ofta för 'livets byggsten'?", choices: ["Det är det lättaste grundämnet","Det kan bilda långa, komplexa kedjor och ringar med sig självt och andra grundämnen","Det reagerar våldsamt med vatten","Det har den högsta smältpunkten av alla grundämnen"], correct: 1, exp_correct: "Kol kan bilda <b>långa kedjor, grenar och ringar</b> med sig självt och binda med H, O, N och S. Detta möjliggör miljontals olika organiska molekyler — grunden för allt liv.", exp_wrong: "Kolens specialegenskap är förmågan att bilda <b>komplexa, varierade strukturer</b> via 4 bindningar. Att vara lätt eller ha hög smältpunkt förklarar inte varför det är livets bas.", hint: "Vad gör kol strukturellt unikt jämfört med andra grundämnen?" },
+    { q: "I diamant är kolatomerna arrangerade i ett:", choices: ["Platt skiktat lagerstruktur","Slumpmässigt amorft mönster","3D-tetraedriskt gitter där varje kol binds till 4 andra","Ring av exakt 6 kolatomer"], correct: 2, exp_correct: "Diamant har ett <b>3D-tetraedriskt gitter</b> — varje kol är kovalent bundet till 4 andra i alla riktningar. Detta gör det extremt hårt.", exp_wrong: "Platta lager beskriver <b>grafit, inte diamant</b>. Diamantens styrka kommer från dess 3D-nätverk av 4-bindningstetraeder.", hint: "Diamant är det hårdaste naturliga ämnet — vilken struktur förklarar det?" },
+    { q: "Vilken allotrop av kol har lager som kan glida mot varandra och är hal?", choices: ["Diamant","Grafit","Träkol","Kolfiber"], correct: 1, exp_correct: "<b>Grafit</b> har kolatomer i platta hexagonala lager som hålls ihop av svaga van der Waals-krafter, så lagren glider lätt — användbart som smörjmedel och i pennor.", exp_wrong: "<b>Grafit</b>, inte diamant, är hal. Diamantens styva 3D-struktur gör det till det hårdaste naturliga ämnet, medan grafitens lager glider fritt.", hint: "Denna allotrop används i pennor." },
+    { q: "Varför kan kol bilda så många fler föreningar än de flesta andra grundämnen?", choices: ["Kol är det vanligaste grundämnet på jorden","Kolatomer är mycket stora","Kol kan bilda 4 bindningar och kedja med sig självt nästan obegränsat","Kol reagerar bara med väte"], correct: 2, exp_correct: "Kolens <b>4 bindningsplatser och förmåga till katenering</b> (binda till sig självt) skapar en enorm variation av kedjor, ringar och förgrenade strukturer — miljontals unika föreningar.", exp_wrong: "Kolens unicitet beror på <b>4 bindningar + självkedjebildning</b>, inte mängd eller storlek. Kisel har också 4 bindningar men bildar kedjor mycket sämre.", hint: "Nyckelordet är 'katenering'." },
+    { q: "Vad är den korrekta molekylformeln för propan?", choices: ["C₂H₆","C₃H₈","C₃H₆","C₄H₁₀"], correct: 1, exp_correct: "<b>Propan är C₃H₈</b>. Alkaner följer CₙH₂ₙ₊₂, alltså ger 3 kol: 2(3)+2 = 8 väteatomer.", exp_wrong: "Använd alkanformeln <b>CₙH₂ₙ₊₂</b>. För 3 kol: 2×3+2 = 8 H-atomer → C₃H₈ är propan.", hint: "Alkanformel: CₙH₂ₙ₊₂. Propan har 3 kolatomer." },
+    { q: "Vilket suffix indikerar att ett kolväte har en trippelbindning?", choices: ["-an","-en","-yn","-ol"], correct: 2, exp_correct: "<b>-yn</b> indikerar en trippelbindning (alkyn). -an = enkel, -en = dubbel. Exempel: propyn har en C≡C trippelbindning.", exp_wrong: "Suffixen är: -an (enkel), -en (dubbel), <b>-yn (trippel)</b>. -ol indikerar en alkohol, inte en kolvätesort.", hint: "Kom ihåg: enkel, dubbel, trippel → an, en, yn." },
+    { q: "Varför har butan (C₄H₁₀) högre kokpunkt än metan (CH₄)?", choices: ["Butan har fler vätebindningar","Butan har en längre kedja som skapar starkare van der Waals-krafter","Metan har en trippelbindning","Butan är gas medan metan är flytande"], correct: 1, exp_correct: "Längre kolvätekeditor har <b>mer yta och starkare van der Waals-krafter (dispersionskrafter)</b> mellan molekylerna, och kräver mer energi att separera — därav högre kokpunkt.", exp_wrong: "Kolväten bildar inga vätebindningar. Nyckeln är <b>längre kedjor = starkare van der Waals-krafter = högre kokpunkt</b>. Metan är faktiskt gas vid rumstemperatur.", hint: "Fler kol = mer yta = starkare intermolekylära krafter." },
+    { q: "Vilket av dessa kolväten är mest reaktivt?", choices: ["Metan (bara C-C enkelbindning)","Etan","Eten (C=C dubbelbindning)","Propan"], correct: 2, exp_correct: "<b>Alkener med dubbelbindningar</b> är mer reaktiva än alkaner. Den extra bindningen är svagare och mer tillgänglig, vilket underlättar additionsreaktioner.", exp_wrong: "<b>Dubbelbindningar i alkener</b> gör dem mycket mer reaktiva än enkelbindade alkaner. En trippelbindning i alkyner är ännu mer reaktiv.", hint: "Fler bindningar mellan C-atomer innebär inte alltid mer stabilt." },
+    { q: "Vad heter den enklaste alkynen med formeln C₂H₂?", choices: ["Etan","Eten","Etyn (acetylen)","Propyn"], correct: 2, exp_correct: "<b>Etyn (kallas vanligtvis acetylen)</b> är den enklaste alkynen — 2 kol förbundna av en trippelbindning (C≡C). Den används i svetsbrännare.", exp_wrong: "C₂H₂ med trippelbindning är <b>etyn (acetylen)</b>. Etan är C₂H₆ (enkelbindning), eten är C₂H₄ (dubbelbindning).", hint: "2 kol + trippelbindning → et- + -yn." },
+    { q: "Vad berättar en molekylformel som en strukturformel inte gör?", choices: ["Molekylens form","Det exakta antalet av varje atomtyp","Hur atomerna är bundna till varandra","Atomernas 3D-arrangement"], correct: 1, exp_correct: "En <b>molekylformel</b> (t.ex. C₃H₈) listar helt enkelt det exakta antalet av varje atom. En strukturformel visar dessutom hur atomerna är kopplade.", exp_wrong: "En molekylformel ger <b>bara atomantal</b>. Strukturformler visar bindningsarrangemang. Ingen av dem visar full 3D-form (det kräver en utfyllnads- eller kulstav-modell).", hint: "Tänk på vad 'C₃H₈' berättar jämfört med en ritad struktur." },
+    { q: "Vilken strukturformel representerar metan korrekt?", choices: ["H-C≡C-H","H₂C=CH₂","En kolatom bunden till 4 väteatomer","CH₃-CH₃"], correct: 2, exp_correct: "<b>Metan (CH₄)</b> är en kolatom bunden till 4 väteatomer. Det är den enklaste alkanen med 4 enkelbindningar runt kolet.", exp_wrong: "H-C≡C-H är etyn, H₂C=CH₂ är eten, och CH₃-CH₃ är etan. <b>Metan = ett kol + fyra väten</b>, ingen kol-kol-bindning.", hint: "Metan är det enklaste kolvätet — bara 1 kolatom." },
+    { q: "Propyn har formeln C₃H₄. Vilken bindning finns i propyn?", choices: ["Tre enkla C-C-bindningar","En dubbelbindning mellan två kol","En trippelbindning mellan två kol","Två dubbelbindningar"], correct: 2, exp_correct: "<b>Propyn (en alkyn)</b> innehåller en C≡C trippelbindning. Suffixet -yn betyder alltid minst en trippelbindning i kolkedjan.", exp_wrong: "Propyn slutar på <b>-yn</b>, vilket alltid signalerar en <b>trippelbindning (C≡C)</b>. Dubbelbindningar tillhör alkener (-en).", hint: "Suffixet -yn = trippelbindning." },
+    { q: "Vilken funktionell grupp identifierar en molekyl som en alkohol?", choices: ["-COOH","-OH","-CHO","-CO-"], correct: 1, exp_correct: "<b>Hydroxylgruppen (-OH)</b> fäst vid en kolkedja definierar en alkohol. Exempel: metanol (CH₃OH), etanol (C₂H₅OH).", exp_wrong: "-COOH är en karboxylgrupp (organisk syra), -CHO är en aldehyd, -CO- är ett keton. <b>-OH = alkohol</b>.", hint: "Suffixet -ol i alkoholnamn antyder den funktionella gruppen." },
+    { q: "Etylenglykol används som frostskyddsmedel i bilar. Varför är det lämpligt för vinterklimat?", choices: ["Det har en mycket hög kokpunkt","Det sänker vattnets fryspunkt när det blandas med det","Det reagerar med is för att producera värme","Det är mindre tätt än vatten"], correct: 1, exp_correct: "Etylenglykol <b>sänker fryspunkten</b> för vatten (fryspunktssänkning), vilket förhindrar kylvätskan från att frysa i kalla temperaturer.", exp_wrong: "Frostskyddseffekten är <b>fryspunktssänkning</b> — tillsatsen av glykol stör vattnets förmåga att bilda is. Det genererar ingen värme eller fungerar via densitetsskillnader.", hint: "Vad händer med en vätskas fryspunkt när du tillsätter ett löst ämne?" },
+    { q: "Vad gör metanol MER farligt att dricka än etanol?", choices: ["Metanol har mycket högre alkoholhalt","Metanol metaboliseras till formaldehyd och myrsyra, som är mycket giftiga","Metanol är mindre lösligt i vatten","Metanol innehåller fler kolatomer"], correct: 1, exp_correct: "Vid metabolism producerar <b>metanol formaldehyd och myrsyra</b>, som orsakar blindhet och dödsfall även i små mängder. Etanol är mycket säkrare att konsumera.", exp_wrong: "Faran ligger i metanolens <b>giftiga metaboliter (formaldehyd, myrsyra)</b>. Metanol har faktiskt färre kol än etanol — CH₃OH vs. C₂H₅OH.", hint: "Tänk på vad kroppen gör med metanol efter intag." },
+    { q: "Karboxylgruppen (-COOH) finns i:", choices: ["Alkoholer","Alkener","Organiska syror","Estrar"], correct: 2, exp_correct: "<b>Organiska (karboxyl-)syror</b> innehåller -COOH-gruppen. Exempel: metansyra (HCOOH) och etansyra (CH₃COOH, ättika).", exp_wrong: "-COOH är den definierande gruppen för <b>karboxylsyror</b>. Alkoholer har -OH, alkener har C=C-dubbelbindningar, och estrar har -COO-bindningar.", hint: "Ordet 'karboxyl' innehåller 'kol' + 'syre' + 'väte'." },
+    { q: "Metansyra (myrsyra) har formeln HCOOH. Vilket påstående beskriver det bäst?", choices: ["En alkan med ett kol","Den enklaste karboxylsyran, med en -COOH-grupp","En alkohol med ett kol","Ett keton"], correct: 1, exp_correct: "<b>Metansyra är den enklaste karboxylsyran</b>, bestående av bara en -COOH-grupp (H-COOH). Det finns i myrgift och nässlor.", exp_wrong: "HCOOH innehåller en <b>-COOH (karboxyl-)grupp</b>, vilket gör det till den enklaste karboxylsyran — inte en alkohol, alkan eller keton.", hint: "Den finns i myrgift! Vilken typ av molekyl har -COOH?" },
+    { q: "Hur bildas en ester?", choices: ["Genom att bränna ett kolväte i syre","Genom att reagera en alkohol med en karboxylsyra","Genom att tillsätta väte till en alken","Genom att lösa ett salt i vatten"], correct: 1, exp_correct: "Estrar bildas via <b>esterifiering</b>: en alkohol + karboxylsyra → ester + vatten. Exempel: etanol + etansyra → etylacetat.", exp_wrong: "Estrar bildas från <b>alkohol + karboxylsyra</b>-reaktioner. Förbränning ger CO₂/H₂O, hydrering innebär att H₂ läggs till dubbelbindningar.", hint: "Esterifiering är reaktionen — två typer av organiska molekyler kombineras." },
+    { q: "Varför luktar estrar ofta fruktigt eller blommigt?", choices: ["De innehåller kväve, som är aromatiskt","Estrar är flyktiga och deras molekyler interagerar med luktreceptorer på ett behagligt sätt","De bildas av förbränningsreaktioner","Estrar innehåller alltid svavelföreningar"], correct: 1, exp_correct: "<b>Estrar är flyktiga</b> (avdunstar lätt) och deras molekylformer interagerar med våra luktreceptorer på sätt som vi uppfattar som fruktiga eller blommiga. Olika estrar ger olika dofter.", exp_wrong: "Den behagliga doften beror på att <b>estarmolekyler är flyktiga och interagerar med luktreceptorer</b>. De innehåller inget kväve eller svavel — bara C, H och O.", hint: "Parfymer och fruktaromsättning använder ofta estrar." },
+    { q: "Fetter och oljor klassificeras kemiskt som:", choices: ["Alkaner","Alkoholer","Estrar av glycerol och fettsyror","Karboxylsyror"], correct: 2, exp_correct: "<b>Fetter är triestrar</b> — bildade från en glycerolmolekyl bunden till tre fettsyrakedjor. Det är därför de kallas triglycerider.", exp_wrong: "Fetter är <b>estrar (triglycerider)</b>, inte enkla alkaner eller syror. De bildas från glycerol + 3 fettsyror genom esterifiering.", hint: "Ordet 'triglycerid' innehåller en stor ledtråd." },
+    { q: "Metylacetat luktar som lim. Vilka två föreningar reagerades för att göra det?", choices: ["Metanol + etansyra","Etanol + metansyra","Propanol + metansyra","Metan + eten"], correct: 0, exp_correct: "<b>Metylacetat = metanol + etansyra</b>. 'Metyl' kommer från metanol och 'acetat' från etansyra.", exp_wrong: "Estarnamngivning: det första ordet (metyl) = alkoholen (metanol); det andra (acetat) = syran (etansyra). Alltså: <b>metanol + etansyra</b>.", hint: "Dela upp namnet: metyl → ? + acetat → ?" },
+    { q: "Vad är produkterna av fullständig förbränning av ett kolväte?", choices: ["Kolmonoxid och vatten","Koldioxid och vatten","Kol och vätgas","Syre och kväve"], correct: 1, exp_correct: "Fullständig förbränning (gott om syre) producerar <b>CO₂ och H₂O</b>. Ofullständig förbränning (begränsat syre) producerar CO eller sot istället.", exp_wrong: "<b>Fullständig förbränning</b> ger alltid CO₂ + H₂O. CO bildas bara vid <b>ofullständig</b> förbränning när syret är begränsat.", hint: "Gott om syre = fullständig förbränning = C→CO₂, H→H₂O." },
+    { q: "Varför anses etanol ibland mer miljövänligt än bensin som bränsle?", choices: ["Etanol producerar inget CO₂ vid förbränning","Etanol tillverkas av växter som absorberar CO₂ när de växer, vilket gör det ungefär koldioxidneutralt","Etanol brinner vid lägre temperatur","Etanol innehåller inga väteatomer"], correct: 1, exp_correct: "Etanol från grödor anses <b>koldioxidneutralt</b> eftersom CO₂ som frigörs vid förbränning tidigare absorberades av växterna under fotosyntesen.", exp_wrong: "Etanol producerar fortfarande CO₂ vid förbränning. Den miljömässiga fördelen är <b>kolcykeln</b>: växter absorberar CO₂ för att växa → etanol bränns → CO₂ återlämnas. Bensin frigör forntida lagrat kol.", hint: "Tänk på varifrån kolet i etanol kommer." },
+    { q: "Vilket påstående förklarar bäst varför fossila bränslen bidrar mer till klimatförändring än biobränslen som etanol?", choices: ["Fossila bränslen brinner varmare och orsakar mer direkt värmeskada","Fossila bränslen frigör kol som var låst under jord i miljontals år och tillför nytt CO₂ till atmosfären","Biobränslen innehåller mer syre än fossila bränslen","Fossila bränslen producerar vattenånga som fångar värme"], correct: 1, exp_correct: "Fossila bränslen frigör <b>forntida kol</b> lagrat under jord, vilket ger ett nettotillskott av CO₂ till dagens atmosfär. Biobränslen återanvänder <b>befintligt atmosfäriskt kol</b> genom växtlighet.", exp_wrong: "Nyckelfrågan är <b>nettokoltillskott</b>. Fossila bränslen frigör kol som var låst i miljontals år, medan biobränslen återanvänder kol som redan finns i atmosfären.", hint: "Nyckelord: 'netto'-kol som tillförs atmosfären." },
+    { q: "En elev bränner propan (C₃H₈) i överskott av syre. Vilken ekvation visar korrekt produkterna?", choices: ["C₃H₈ + O₂ → C + H₂O","C₃H₈ + O₂ → CO + H₂","C₃H₈ + 5O₂ → 3CO₂ + 4H₂O","C₃H₈ → 3C + 4H₂"], correct: 2, exp_correct: "<b>C₃H₈ + 5O₂ → 3CO₂ + 4H₂O</b> är balanserad fullständig förbränning. 3 kol → 3 CO₂; 8 väten → 4 H₂O; 5 O₂ balanserar syret.", exp_wrong: "Fullständig förbränning ger alltid <b>CO₂ + H₂O</b>. Kontrollera balansen: 3C → 3CO₂, 8H → 4H₂O, kräver 5O₂. Alternativ C är den enda korrekt balanserade ekvationen.", hint: "Räkna atomer på varje sida. Överskott O₂ = fullständig förbränning." }
+  ]
+};
+
+// ─────────────────────────────────────────────────────────────────
+// CHEAT SHEET DATA
+// ─────────────────────────────────────────────────────────────────
+const CHEAT_DATA = {
+  en: [
+    { key: "Carbon valency", val: "Always forms 4 bonds. Tetravalent." },
+    { key: "Alkane formula", val: "CₙH₂ₙ₊₂ · single bonds · -ane suffix" },
+    { key: "Alkene formula", val: "CₙH₂ₙ · one C=C double bond · -ene suffix" },
+    { key: "Alkyne formula", val: "CₙH₂ₙ₋₂ · one C≡C triple bond · -yne suffix" },
+    { key: "Alcohol (-OH)", val: "Hydroxyl group. Methanol CH₃OH, Ethanol C₂H₅OH" },
+    { key: "Carboxylic acid (-COOH)", val: "Methanoic (HCOOH), Ethanoic (CH₃COOH = vinegar)" },
+    { key: "Ester formation", val: "Alcohol + Carboxylic acid → Ester + Water" },
+    { key: "Fats/Oils", val: "Triesters (triglycerides) = glycerol + 3 fatty acids" },
+    { key: "Complete combustion", val: "Hydrocarbon + O₂ → CO₂ + H₂O (lots of O₂)" },
+    { key: "Incomplete combustion", val: "Limited O₂ → CO (toxic) or soot (C)" },
+    { key: "Diamond vs Graphite", val: "Diamond: 3D tetrahedral (hard) · Graphite: flat layers (slippery)" },
+    { key: "Biofuel advantage", val: "Carbon-neutral: plants absorb CO₂ while growing" },
+  ],
+  sv: [
+    { key: "Kolvalens", val: "Bildar alltid 4 bindningar. Tetravalent." },
+    { key: "Alkanformel", val: "CₙH₂ₙ₊₂ · enkelbindningar · suffixet -an" },
+    { key: "Alkenformel", val: "CₙH₂ₙ · en C=C dubbelbindning · suffixet -en" },
+    { key: "Alkynformel", val: "CₙH₂ₙ₋₂ · en C≡C trippelbindning · suffixet -yn" },
+    { key: "Alkohol (-OH)", val: "Hydroxylgrupp. Metanol CH₃OH, Etanol C₂H₅OH" },
+    { key: "Karboxylsyra (-COOH)", val: "Metansyra (HCOOH), Etansyra (CH₃COOH = ättika)" },
+    { key: "Esterbildning", val: "Alkohol + Karboxylsyra → Ester + Vatten" },
+    { key: "Fetter/Oljor", val: "Triestrar (triglycerider) = glycerol + 3 fettsyror" },
+    { key: "Fullständig förbränning", val: "Kolväte + O₂ → CO₂ + H₂O (mycket O₂)" },
+    { key: "Ofullständig förbränning", val: "Begränsat O₂ → CO (giftigt) eller sot (C)" },
+    { key: "Diamant vs Grafit", val: "Diamant: 3D-tetraeder (hårt) · Grafit: platta lager (halt)" },
+    { key: "Biobränslefördelar", val: "Koldioxidneutralt: växter absorberar CO₂ under tillväxt" },
+  ]
+};
+
+// ─────────────────────────────────────────────────────────────────
+// MNEMONICS DATA
+// ─────────────────────────────────────────────────────────────────
+const MNEMONIC_DATA = {
+  en: [
+    { trick: "<b>Alkane / Alkene / Alkyne suffixes:</b> <em>\"Ane-ene-yne → single-double-triple\" — count the letters in the suffix: -ane (3), -ene (4→2 bonds implied), -yne (4→3). Or just: A=1, E=2, Y=3.</em>" },
+    { trick: "<b>Carbon has 4 bonds:</b> <em>\"C is for Car — a car has 4 wheels, carbon has 4 bonds.\"</em>" },
+    { trick: "<b>Complete vs. Incomplete combustion:</b> <em>\"Plenty of air = CO₂ (clear), Limited air = CO (killer)\" — more air = cleaner burn.</em>" },
+    { trick: "<b>Ester = Alcohol + Acid:</b> <em>\"EstErs are born from Ethanol and acids.\" Also remember: the alcohol name goes FIRST in the ester name (methyl = methanol).</em>" },
+    { trick: "<b>Diamond is hard, Graphite is slippery:</b> <em>\"DiAmond = All directions bonded. GraphITE = layITE on top of each other.\"</em>" },
+    { trick: "<b>Alkane formula CₙH₂ₙ₊₂:</b> <em>\"n carbons → 2n+2 hydrogens. For propane (n=3): 2×3+2=8 → C₃H₈.\"</em>" },
+    { trick: "<b>Methanol is DEADLY:</b> <em>\"M for Murder — Methanol metabolises into formaldehyde. Don't drink what starts with M.\"</em>" },
+    { trick: "<b>Fats are triglycerides:</b> <em>\"TRI = 3 fatty acids hugging 1 glycerol. Like a 3-legged stool.\"</em>" },
+    { trick: "<b>Biofuels are carbon-neutral:</b> <em>\"Plants BORROW CO₂, biofuel RETURNS it. Fossil fuels STEAL from underground.\"</em>" },
+    { trick: "<b>Alcohol functional group -OH:</b> <em>\"OH! That's an alcohol! (The -ol suffix = -OH group)\"</em>" },
+  ],
+  sv: [
+    { trick: "<b>Alkan / Alken / Alkyn suffix:</b> <em>\"An-en-yn → enkel-dubbel-trippel\" — A=1, E=2, Y=3 bindning.</em>" },
+    { trick: "<b>Kol har 4 bindningar:</b> <em>\"K är för Kärlighet — en kär vän har 4 armar att krama med, kol har 4 bindningar.\"</em>" },
+    { trick: "<b>Fullständig vs ofullständig förbränning:</b> <em>\"Mycket luft = CO₂ (klart), Lite luft = CO (farligt)\" — mer luft = renare förbränning.</em>" },
+    { trick: "<b>Ester = Alkohol + Syra:</b> <em>\"Estrar föds från Etanol och syror.\" Alkoholnamnet kommer FÖRST i estarnamnet (metyl = metanol).</em>" },
+    { trick: "<b>Diamant är hårt, Grafit är halt:</b> <em>\"DIamant = åt alla rIktningar. GrAFIT = lAGer ovanpå varandra.\"</em>" },
+    { trick: "<b>Alkanformel CₙH₂ₙ₊₂:</b> <em>\"n kol → 2n+2 väten. För propan (n=3): 2×3+2=8 → C₃H₈.\"</em>" },
+    { trick: "<b>Metanol är DÖDLIGT:</b> <em>\"M för Mord — Metanol metaboliseras till formaldehyd. Drick aldrig det som börjar på M.\"</em>" },
+    { trick: "<b>Fetter är triglycerider:</b> <em>\"TRI = 3 fettsyror kramar 1 glycerol. Som en trebent pall.\"</em>" },
+    { trick: "<b>Biobränslen är koldioxidneutrala:</b> <em>\"Växter LÅnar CO₂, biobränsle ÅTERLÄMNAR det. Fossila bränslen STJÄL från underjorden.\"</em>" },
+    { trick: "<b>Alkohol funktionell grupp -OH:</b> <em>\"OH! Det är en alkohol! (Suffixet -ol = -OH-gruppen)\"</em>" },
+  ]
+};
+
+// ─────────────────────────────────────────────────────────────────
+// FLASHCARD DATA (top 10 key facts per lang)
+// ─────────────────────────────────────────────────────────────────
+const FLASHCARD_DATA = {
+  en: [
+    { q: "How many bonds does carbon form?", a: "4 covalent bonds (tetravalent)" },
+    { q: "Alkane general formula?", a: "CₙH₂ₙ₊₂ (e.g. propane = C₃H₈)" },
+    { q: "What suffix = double bond?", a: "-ene (alkene, e.g. ethene C₂H₄)" },
+    { q: "What suffix = triple bond?", a: "-yne (alkyne, e.g. ethyne C₂H₂)" },
+    { q: "Functional group of alcohols?", a: "-OH (hydroxyl group)" },
+    { q: "Functional group of organic acids?", a: "-COOH (carboxyl group)" },
+    { q: "How are esters made?", a: "Alcohol + Carboxylic acid → Ester + Water" },
+    { q: "Products of COMPLETE combustion?", a: "CO₂ + H₂O (with excess oxygen)" },
+    { q: "Why is graphite slippery?", a: "Flat layers bonded weakly — they slide over each other" },
+    { q: "Why are biofuels carbon-neutral?", a: "Plants absorb CO₂ while growing; burning returns the same CO₂" },
+    { q: "What makes methanol dangerous?", a: "Metabolised into formaldehyde & formic acid — toxic even in small doses" },
+    { q: "What are fats chemically?", a: "Triesters (triglycerides) of glycerol + 3 fatty acids" },
+  ],
+  sv: [
+    { q: "Hur många bindningar bildar kol?", a: "4 kovalenta bindningar (tetravalent)" },
+    { q: "Alkanens allmänna formel?", a: "CₙH₂ₙ₊₂ (t.ex. propan = C₃H₈)" },
+    { q: "Vilket suffix = dubbelbindning?", a: "-en (alken, t.ex. eten C₂H₄)" },
+    { q: "Vilket suffix = trippelbindning?", a: "-yn (alkyn, t.ex. etyn C₂H₂)" },
+    { q: "Funktionell grupp för alkoholer?", a: "-OH (hydroxylgrupp)" },
+    { q: "Funktionell grupp för organiska syror?", a: "-COOH (karboxylgrupp)" },
+    { q: "Hur bildas estrar?", a: "Alkohol + Karboxylsyra → Ester + Vatten" },
+    { q: "Produkter vid FULLSTÄNDIG förbränning?", a: "CO₂ + H₂O (med överskott av syre)" },
+    { q: "Varför är grafit halt?", a: "Platta lager är svagt bundna — de glider mot varandra" },
+    { q: "Varför är biobränslen koldioxidneutrala?", a: "Växter absorberar CO₂ under tillväxt; förbränning återlämnar samma CO₂" },
+    { q: "Vad gör metanol farligt?", a: "Metaboliseras till formaldehyd & myrsyra — giftigt även i små doser" },
+    { q: "Vad är fetter kemiskt?", a: "Triestrar (triglycerider) av glycerol + 3 fettsyror" },
+  ]
+};
+
+// ─────────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────────
+let lang = 'en';
 let questions = [];
 let current = 0;
 let score = 0;
 let answered = false;
+let hintsEnabled = false;
+let cramPanelOpen = false;
+let cheatOpen = false;
+let flashOpen = false;
+let mnemonicOpen = false;
+let fcIndex = 0;
+let fcFlipped = false;
 
+// ─────────────────────────────────────────────────────────────────
+// LANGUAGE SYSTEM
+// ─────────────────────────────────────────────────────────────────
+function setLang(l) {
+  lang = l;
+  document.getElementById('btnEN').classList.toggle('active', l==='en');
+  document.getElementById('btnSV').classList.toggle('active', l==='sv');
+  document.documentElement.lang = l;
+  applyTranslations();
+  // Rebuild cram content if open
+  if (cheatOpen) buildCheatSheet();
+  if (mnemonicOpen) buildMnemonics();
+  if (flashOpen) { buildFlashcards(); renderFlashcard(); }
+  // Restart quiz in new language
+  startQuiz();
+}
+
+function applyTranslations() {
+  const T = TRANSLATIONS[lang];
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (T[key]) el.textContent = T[key];
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────
+// CRAM PANEL
+// ─────────────────────────────────────────────────────────────────
+function toggleCramPanel() {
+  cramPanelOpen = !cramPanelOpen;
+  document.getElementById('cram-panel').style.display = cramPanelOpen ? 'block' : 'none';
+  document.getElementById('cramToggle').classList.toggle('active', cramPanelOpen);
+}
+
+function toggleHints() {
+  hintsEnabled = !hintsEnabled;
+  document.getElementById('opt-hints').classList.toggle('active', hintsEnabled);
+  updateHintBar();
+}
+
+function toggleCheatSheet() {
+  cheatOpen = !cheatOpen;
+  document.getElementById('opt-cheat').classList.toggle('active', cheatOpen);
+  const el = document.getElementById('cheat-sheet');
+  if (cheatOpen) { buildCheatSheet(); el.style.display = 'block'; }
+  else el.style.display = 'none';
+  // Close others
+  if (cheatOpen) { flashOpen = false; mnemonicOpen = false; syncPanels(); }
+}
+
+function toggleFlashcards() {
+  flashOpen = !flashOpen;
+  document.getElementById('opt-flash').classList.toggle('active', flashOpen);
+  const el = document.getElementById('flashcard-wrap');
+  if (flashOpen) { buildFlashcards(); renderFlashcard(); el.style.display = 'block'; }
+  else el.style.display = 'none';
+  if (flashOpen) { cheatOpen = false; mnemonicOpen = false; syncPanels(); }
+}
+
+function toggleMnemonics() {
+  mnemonicOpen = !mnemonicOpen;
+  document.getElementById('opt-mnemonic').classList.toggle('active', mnemonicOpen);
+  const el = document.getElementById('mnemonics-wrap');
+  if (mnemonicOpen) { buildMnemonics(); el.style.display = 'block'; }
+  else el.style.display = 'none';
+  if (mnemonicOpen) { cheatOpen = false; flashOpen = false; syncPanels(); }
+}
+
+function syncPanels() {
+  document.getElementById('cheat-sheet').style.display = cheatOpen ? 'block' : 'none';
+  document.getElementById('opt-cheat').classList.toggle('active', cheatOpen);
+  document.getElementById('flashcard-wrap').style.display = flashOpen ? 'block' : 'none';
+  document.getElementById('opt-flash').classList.toggle('active', flashOpen);
+  document.getElementById('mnemonics-wrap').style.display = mnemonicOpen ? 'block' : 'none';
+  document.getElementById('opt-mnemonic').classList.toggle('active', mnemonicOpen);
+}
+
+function buildCheatSheet() {
+  const grid = document.getElementById('cheat-grid');
+  grid.innerHTML = '';
+  CHEAT_DATA[lang].forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'cheat-card';
+    card.innerHTML = `<div class="key">${item.key}</div><div class="val">${item.val}</div>`;
+    grid.appendChild(card);
+  });
+}
+
+function buildFlashcards() {
+  fcIndex = 0; fcFlipped = false;
+}
+
+function renderFlashcard() {
+  const cards = FLASHCARD_DATA[lang];
+  const card = cards[fcIndex];
+  document.getElementById('fc-front').textContent = card.q;
+  document.getElementById('fc-back').textContent = card.a;
+  document.getElementById('fc-front').classList.remove('hidden');
+  document.getElementById('fc-back').classList.remove('shown');
+  fcFlipped = false;
+  document.getElementById('fc-counter').textContent = `${fcIndex+1} / ${cards.length}`;
+  // reset hint
+  const tapHint = document.querySelector('.fc-hint');
+  if (tapHint) tapHint.style.opacity = '1';
+}
+
+function flipFlashcard() {
+  fcFlipped = !fcFlipped;
+  document.getElementById('fc-front').classList.toggle('hidden', fcFlipped);
+  document.getElementById('fc-back').classList.toggle('shown', fcFlipped);
+}
+
+function prevFlash() {
+  const cards = FLASHCARD_DATA[lang];
+  fcIndex = (fcIndex - 1 + cards.length) % cards.length;
+  renderFlashcard();
+}
+
+function nextFlash() {
+  const cards = FLASHCARD_DATA[lang];
+  fcIndex = (fcIndex + 1) % cards.length;
+  renderFlashcard();
+}
+
+function buildMnemonics() {
+  const list = document.getElementById('mnemonic-list');
+  list.innerHTML = '';
+  MNEMONIC_DATA[lang].forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'mnemonic-item';
+    el.innerHTML = item.trick;
+    list.appendChild(el);
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────
+// QUIZ
+// ─────────────────────────────────────────────────────────────────
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -698,10 +911,8 @@ function shuffle(arr) {
 }
 
 function startQuiz() {
-  questions = shuffle([...ALL_QUESTIONS]);
-  current = 0;
-  score = 0;
-  answered = false;
+  questions = shuffle([...ALL_QUESTIONS[lang]]);
+  current = 0; score = 0; answered = false;
   document.getElementById('result-screen').style.display = 'none';
   document.getElementById('quiz-card').style.display = 'block';
   document.getElementById('scoreboard').style.display = 'flex';
@@ -710,18 +921,30 @@ function startQuiz() {
 }
 
 function updateScoreboard() {
+  const T = TRANSLATIONS[lang];
   document.getElementById('score-display').textContent = `${score} / ${current}`;
-  document.getElementById('q-counter').textContent = `Q ${current + 1} of 25`;
+  document.getElementById('q-counter').textContent = `${T.qLabel} ${current + 1} ${T.ofLabel} 25`;
   const pct = (current / 25) * 100;
   document.getElementById('progress-bar').style.width = pct + '%';
+}
+
+function updateHintBar() {
+  const hintBar = document.getElementById('hint-bar');
+  if (hintsEnabled && !answered && questions[current]) {
+    hintBar.textContent = '💡 ' + questions[current].hint;
+    hintBar.classList.add('visible');
+  } else {
+    hintBar.classList.remove('visible');
+  }
 }
 
 function loadQuestion() {
   answered = false;
   const q = questions[current];
   const letters = ['A', 'B', 'C', 'D'];
+  const T = TRANSLATIONS[lang];
 
-  document.getElementById('q-number').textContent = `Question ${current + 1} of 25`;
+  document.getElementById('q-number').textContent = `${T.qLabel} ${current + 1} ${T.ofLabel} 25`;
   document.getElementById('q-text').textContent = q.q;
 
   const exp = document.getElementById('explanation');
@@ -731,11 +954,12 @@ function loadQuestion() {
 
   const nextBtn = document.getElementById('next-btn');
   nextBtn.style.display = 'none';
+  nextBtn.textContent = current < 24 ? T.nextQ : T.nextResults;
 
-  // Shuffle choices for this question
+  updateHintBar();
+
   const indices = shuffle([0, 1, 2, 3]);
   const correctOrigIdx = q.correct;
-
   const choicesDiv = document.getElementById('choices');
   choicesDiv.innerHTML = '';
 
@@ -749,28 +973,24 @@ function loadQuestion() {
     choicesDiv.appendChild(btn);
   });
 
-  // Animate card
   const card = document.getElementById('quiz-card');
   card.classList.remove('card-transition');
   void card.offsetWidth;
   card.classList.add('card-transition');
-
   updateScoreboard();
 }
 
 function handleAnswer(btn, q) {
   if (answered) return;
   answered = true;
-
   const isCorrect = btn.dataset.isCorrect === 'true';
-  const allBtns = document.querySelectorAll('.choice-btn');
-
-  allBtns.forEach(b => {
+  document.querySelectorAll('.choice-btn').forEach(b => {
     b.disabled = true;
-    if (b.dataset.isCorrect === 'true') {
-      b.classList.add('correct');
-    }
+    if (b.dataset.isCorrect === 'true') b.classList.add('correct');
   });
+
+  // Hide hint after answer
+  document.getElementById('hint-bar').classList.remove('visible');
 
   const exp = document.getElementById('explanation');
   if (isCorrect) {
@@ -787,41 +1007,37 @@ function handleAnswer(btn, q) {
   exp.style.display = 'block';
   document.getElementById('score-display').textContent = `${score} / ${current + 1}`;
 
-  // Show next button
   const nextBtn = document.getElementById('next-btn');
+  const T = TRANSLATIONS[lang];
+  nextBtn.textContent = current < 24 ? T.nextQ : T.nextResults;
   nextBtn.style.display = 'block';
-  nextBtn.textContent = current < 24 ? 'Next Question →' : 'See Results 🏆';
 }
 
 document.getElementById('next-btn').addEventListener('click', () => {
   current++;
-  if (current >= 25) {
-    showResults();
-  } else {
-    loadQuestion();
-  }
+  if (current >= 25) showResults();
+  else loadQuestion();
 });
 
 function showResults() {
   document.getElementById('quiz-card').style.display = 'none';
   document.getElementById('scoreboard').style.display = 'none';
-
+  const T = TRANSLATIONS[lang];
   const pct = score / 25;
-  let emoji, msg;
-  if (pct >= 0.92) { emoji = '🏆'; msg = "Outstanding! You've mastered carbon chemistry. You're ready for the exam!"; }
-  else if (pct >= 0.76) { emoji = '⭐'; msg = "Great work! Solid understanding — review a few weak spots and you'll ace it."; }
-  else if (pct >= 0.56) { emoji = '📚'; msg = "Good effort! Some concepts need more review — revisit the topics you missed."; }
-  else if (pct >= 0.40) { emoji = '💪'; msg = "Keep going! Focus on the explanations for missed questions before your exam."; }
-  else { emoji = '🔬'; msg = "Don't give up — start with the basics: bonding, naming, and combustion. You'll get there!"; }
-
-  document.getElementById('result-emoji').textContent = emoji;
+  const match = T.results.find(r => pct >= r.min);
+  document.getElementById('result-emoji').textContent = match.emoji;
   document.getElementById('result-score').textContent = `${score} / 25`;
-  document.getElementById('result-msg').textContent = msg;
+  document.getElementById('result-msg').textContent = match.msg;
   document.getElementById('result-screen').style.display = 'block';
+  // Update restart button text
+  document.getElementById('restart-btn').textContent = T.restart;
+  document.querySelector('.result-label').textContent = T.finalScore;
 }
 
 document.getElementById('restart-btn').addEventListener('click', startQuiz);
 
+// Init
+applyTranslations();
 startQuiz();
 </script>
 </body>
